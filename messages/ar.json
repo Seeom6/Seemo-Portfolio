@@ -1,0 +1,114 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "نبذة عني",
+    "projects": "المشاريع",
+    "contact": "تواصل معي",
+    "toggleTheme": "تبديل المظهر",
+    "toggleLanguage": "تبديل اللغة"
+  },
+  "home": {
+    "title": "مطور ويب",
+    "subtitle": "مطور ويب متكامل",
+    "description": "أقوم بإنشاء تطبيقات ويب حديثة ومتجاوبة بكود نظيف وتجربة مستخدم استثنائية.",
+    "viewProjects": "عرض المشاريع",
+    "contactMe": "تواصل معي",
+    "downloadCV": "تحميل السيرة الذاتية"
+  },
+  "about": {
+    "title": "نبذة عني",
+    "description": "مطور ويب شغوف بخبرة في التقنيات الحديثة",
+    "skills": "المهارات",
+    "experience": "الخبرة",
+    "education": "التعليم",
+    "certifications": "الشهادات"
+  },
+  "projects": {
+    "title": "مشاريعي",
+    "description": "مجموعة من أعمالي الحديثة والمشاريع الجانبية",
+    "filterAll": "الكل",
+    "filterByTech": "تصفية حسب التقنية",
+    "viewDemo": "عرض المشروع",
+    "viewCode": "عرض الكود",
+    "gridView": "عرض شبكي",
+    "listView": "عرض قائمة",
+    "featured": "المشاريع المميزة",
+    "allProjects": "جميع المشاريع",
+    "projectDetails": "تفاصيل المشروع",
+    "technologies": "التقنيات المستخدمة",
+    "features": "الميزات الرئيسية",
+    "challenges": "التحديات",
+    "learnings": "ما تعلمته",
+    "gallery": "معرض المشروع",
+    "links": "روابط المشروع",
+    "status": {
+      "completed": "مكتمل",
+      "in-progress": "قيد التطوير",
+      "planned": "مخطط",
+      "archived": "مؤرشف"
+    },
+    "categories": {
+      "web-app": "تطبيق ويب",
+      "mobile-app": "تطبيق محمول",
+      "website": "موقع ويب",
+      "api": "واجهة برمجية",
+      "library": "مكتبة",
+      "design": "تصميم",
+      "other": "أخرى"
+    },
+    "techCategories": {
+      "frontend": "الواجهة الأمامية",
+      "backend": "الواجهة الخلفية",
+      "database": "قاعدة البيانات",
+      "deployment": "النشر",
+      "design": "التصميم",
+      "other": "أخرى"
+    },
+    "linkTypes": {
+      "demo": "عرض مباشر",
+      "github": "الكود المصدري",
+      "website": "الموقع",
+      "documentation": "التوثيق",
+      "figma": "التصميم",
+      "other": "رابط"
+    },
+    "noProjects": "لم يتم العثور على مشاريع",
+    "loadMore": "تحميل المزيد من المشاريع",
+    "backToProjects": "العودة إلى المشاريع",
+    "shareProject": "مشاركة المشروع",
+    "projectDuration": "مدة المشروع",
+    "lastUpdated": "آخر تحديث"
+  },
+  "contact": {
+    "title": "تواصل معي",
+    "description": "لنناقش مشروعك القادم",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "subject": "الموضوع",
+    "message": "الرسالة",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "success": "تم إرسال الرسالة بنجاح!",
+    "error": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى."
+  },
+  "footer": {
+    "copyright": "© 2024 المحفظة. جميع الحقوق محفوظة.",
+    "builtWith": "مبني باستخدام Next.js و TypeScript و TailwindCSS"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ ما",
+    "retry": "حاول مرة أخرى",
+    "close": "إغلاق",
+    "open": "فتح",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "clear": "مسح"
+  }
+}
