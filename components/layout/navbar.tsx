@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
@@ -33,9 +34,9 @@ export function Navbar() {
         {/* Logo */}
         <Link href={`/${locale}`} className="flex items-center space-x-2">
           <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">P</span>
+              <Image src="/apple-touch-icon.png" alt="Logo" width={32} height={32} />
           </div>
-          <span className="font-bold text-xl">Portfolio</span>
+          <span className="font-bold text-xl">H.S.D</span>
         </Link>
 
         {/* Desktop Navigation */}
