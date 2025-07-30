@@ -160,42 +160,79 @@ export function AnimatedProjectsGrid() {
     setExpandedProjects(newExpanded);
   };
 
-  // Animation variants for staggered animations
+  // Enhanced animation variants for sophisticated transitions
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: {
+      opacity: 0,
+      y: 40,
+      scale: 0.92,
+      rotateX: 10,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 120,
+        damping: 20,
+        mass: 1,
+      },
+    },
+  };
+
+  const sectionVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.95,
+    },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 15
-      }
-    }
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
   };
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
+  const cardHoverVariants = {
+    rest: {
+      scale: 1,
       y: 0,
+      rotateX: 0,
+      rotateY: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1] as const
-      }
-    }
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+    hover: {
+      scale: 1.03,
+      y: -12,
+      rotateX: 8,
+      rotateY: 5,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
   };
 
   return (
@@ -245,12 +282,20 @@ export function AnimatedProjectsGrid() {
             {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className={`group ${index === 0 ? "lg:col-span-2 xl:col-span-1" : ""}`}
+                className={`group perspective-1000 ${index === 0 ? "lg:col-span-2 xl:col-span-1" : ""}`}
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
               >
-                <div className="relative h-full bg-gradient-to-br from-card via-card to-card/50 border border-border/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                <motion.div
+                  className="relative h-full bg-gradient-to-br from-card via-card/95 to-card/90 border border-border/30 rounded-3xl overflow-hidden backdrop-blur-sm"
+                  variants={cardHoverVariants}
+                  style={{
+                    background: "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card)/0.95) 50%, hsl(var(--card)/0.9) 100%)",
+                    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+                  }}
+                >
                   {/* Background decoration */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -264,16 +309,49 @@ export function AnimatedProjectsGrid() {
                     Featured
                   </motion.div>
 
-                  {/* Project Image */}
-                  <div className="relative h-48 w-full overflow-hidden rounded-t-2xl">
-                    <Image
-                      src={project.thumbnail.src}
-                      alt={project.thumbnail.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  {/* Enhanced Project Image */}
+                  <div className="relative h-56 w-full overflow-hidden rounded-t-3xl">
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    >
+                      <Image
+                        src={project.thumbnail.src}
+                        alt={project.thumbnail.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Floating elements for visual interest */}
+                    <motion.div
+                      className="absolute top-4 left-4 w-2 h-2 bg-primary/60 rounded-full"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.6, 1, 0.6]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.2
+                      }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                    <motion.div
+                      className="absolute bottom-4 right-4 w-1.5 h-1.5 bg-secondary/60 rounded-full"
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.4, 0.8, 0.4]
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        delay: index * 0.3
+                      }}
+                    />
                   </div>
 
                   <div className="relative z-10 p-8 space-y-4">
@@ -330,33 +408,54 @@ export function AnimatedProjectsGrid() {
                       </motion.div>
                     </div>
 
-                    {/* Technology badges */}
-                    <div className="flex flex-wrap gap-2 pt-4">
+                    {/* Enhanced Technology badges */}
+                    <div className="flex flex-wrap gap-2.5 pt-6">
                       {project.technologies.slice(0, 4).map((tech, techIndex) => (
                         <motion.div
                           key={tech.name}
-                          className="flex items-center gap-1.5 px-3 py-1 bg-secondary/50 border border-secondary text-secondary-foreground rounded-full text-sm font-medium hover:bg-secondary transition-colors duration-200"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: index * 0.1 + techIndex * 0.05 + 0.7 }}
-                          whileHover={{ scale: 1.05 }}
+                          className="group/tech flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-secondary/40 to-secondary/60 border border-secondary/30 text-secondary-foreground rounded-xl text-sm font-medium backdrop-blur-sm hover:from-secondary/60 hover:to-secondary/80 transition-all duration-300"
+                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          transition={{
+                            duration: 0.4,
+                            delay: index * 0.1 + techIndex * 0.05 + 0.7,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                          whileHover={{
+                            scale: 1.08,
+                            y: -2,
+                            transition: { duration: 0.2 }
+                          }}
                         >
                           {tech.icon && (
-                            <Image
-                              src={tech.icon}
-                              alt={`${tech.name} icon`}
-                              width={16}
-                              height={16}
-                              className="rounded-sm"
-                            />
+                            <motion.div
+                              className="relative"
+                              whileHover={{ rotate: 360 }}
+                              transition={{ duration: 0.6 }}
+                            >
+                              <Image
+                                src={tech.icon}
+                                alt={`${tech.name} icon`}
+                                width={18}
+                                height={18}
+                                className="rounded-sm"
+                              />
+                            </motion.div>
                           )}
-                          <span>{tech.name}</span>
+                          <span className="group-hover/tech:text-foreground transition-colors duration-200">
+                            {tech.name}
+                          </span>
                         </motion.div>
                       ))}
                       {project.technologies.length > 4 && (
-                        <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm">
+                        <motion.span
+                          className="px-4 py-2 bg-muted/60 text-muted-foreground rounded-xl text-sm font-medium border border-muted backdrop-blur-sm"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + 0.9 }}
+                        >
                           +{project.technologies.length - 4} more
-                        </span>
+                        </motion.span>
                       )}
                     </div>
 
@@ -381,23 +480,35 @@ export function AnimatedProjectsGrid() {
                       </span>
                     </div>
 
-                    {/* Action buttons */}
+                    {/* Enhanced Action buttons */}
                     <motion.div
-                      className="flex gap-3 pt-4"
-                      initial={{ opacity: 0, y: 10 }}
+                      className="flex gap-4 pt-6"
+                      initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.9 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 1.0 }}
                     >
                       <motion.div className="flex-1">
                         <Link
                           href={`/${locale}/projects/${project.slug}`}
-                          className="block w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200 text-center"
+                          className="group/btn block w-full"
                         >
                           <motion.div
-                            whileHover={{ scale: 1.02 }}
+                            className="relative px-6 py-3 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-xl font-semibold text-center overflow-hidden"
+                            whileHover={{
+                              scale: 1.02,
+                              boxShadow: "0 8px 25px rgba(var(--primary), 0.3)"
+                            }}
                             whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            View Project
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100"
+                              initial={false}
+                              animate={{ x: "-100%" }}
+                              whileHover={{ x: "100%" }}
+                              transition={{ duration: 0.6 }}
+                            />
+                            <span className="relative z-10">View Project</span>
                           </motion.div>
                         </Link>
                       </motion.div>
@@ -406,16 +517,22 @@ export function AnimatedProjectsGrid() {
                           href={project.links.find(link => link.type === 'github')?.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 border border-border rounded-lg font-medium hover:bg-secondary transition-colors duration-200 text-center"
-                          whileHover={{ scale: 1.02 }}
+                          className="group/btn-secondary"
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)"
+                          }}
                           whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          Code
+                          <div className="px-6 py-3 border-2 border-border/50 rounded-xl font-semibold text-center backdrop-blur-sm hover:border-border hover:bg-secondary/30 transition-all duration-300">
+                            <span>Code</span>
+                          </div>
                         </motion.a>
                       )}
                     </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -454,105 +571,176 @@ export function AnimatedProjectsGrid() {
             {otherProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                className="group"
+                className="group perspective-1000"
                 variants={itemVariants}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring" as const, stiffness: 300 }}
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
               >
-                <div className="relative h-full bg-gradient-to-br from-card to-card/80 border border-border/50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <motion.div
+                  className="relative h-full bg-gradient-to-br from-card via-card/95 to-card/90 border border-border/30 rounded-3xl overflow-hidden backdrop-blur-sm"
+                  variants={cardHoverVariants}
+                  style={{
+                    background: "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card)/0.95) 50%, hsl(var(--card)/0.9) 100%)",
+                    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+                  }}
+                >
                   {/* Background decoration */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-secondary/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Project Image */}
-                  <div className="relative h-40 w-full overflow-hidden rounded-t-xl">
-                    <Image
-                      src={project.thumbnail.src}
-                      alt={project.thumbnail.alt}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  {/* Status badge for consistency */}
+                  <motion.div
+                    className={`absolute top-4 right-4 z-20 px-3 py-1 backdrop-blur-sm border rounded-full text-xs font-medium ${
+                      project.status === 'completed'
+                        ? 'bg-green-100/80 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800'
+                        : project.status === 'in-progress'
+                        ? 'bg-blue-100/80 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800'
+                        : 'bg-yellow-100/80 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800'
+                    }`}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
+                  >
+                    {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
+                  </motion.div>
+
+                  {/* Enhanced Project Image */}
+                  <div className="relative h-56 w-full overflow-hidden rounded-t-3xl">
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    >
+                      <Image
+                        src={project.thumbnail.src}
+                        alt={project.thumbnail.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      />
+                    </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Floating elements for visual interest */}
+                    <motion.div
+                      className="absolute top-4 left-4 w-2 h-2 bg-primary/60 rounded-full"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.6, 1, 0.6]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.2
+                      }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                    <motion.div
+                      className="absolute bottom-4 right-4 w-1.5 h-1.5 bg-secondary/60 rounded-full"
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.4, 0.8, 0.4]
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        delay: index * 0.3
+                      }}
+                    />
                   </div>
 
-                  <div className="relative z-10 p-6 space-y-4">
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <div className="relative z-10 p-8 space-y-6">
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                         {project.translations.en.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed">
                         {project.translations.en.shortDescription}
                       </p>
                     </div>
 
-                    {/* Technology badges */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                    {/* Enhanced Technology badges */}
+                    <div className="flex flex-wrap gap-2.5 pt-4">
+                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
                         <motion.div
                           key={tech.name}
-                          className="flex items-center gap-1 px-2 py-1 bg-secondary/50 text-secondary-foreground rounded-md text-xs font-medium hover:bg-secondary transition-colors duration-200"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: index * 0.05 + techIndex * 0.03 }}
-                          whileHover={{ scale: 1.05 }}
+                          className="group/tech flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-secondary/40 to-secondary/60 border border-secondary/30 text-secondary-foreground rounded-xl text-sm font-medium backdrop-blur-sm hover:from-secondary/60 hover:to-secondary/80 transition-all duration-300"
+                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          transition={{
+                            duration: 0.4,
+                            delay: index * 0.1 + techIndex * 0.05 + 0.7,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                          whileHover={{
+                            scale: 1.08,
+                            y: -2,
+                            transition: { duration: 0.2 }
+                          }}
                         >
                           {tech.icon && (
-                            <Image
-                              src={tech.icon}
-                              alt={`${tech.name} icon`}
-                              width={12}
-                              height={12}
-                              className="rounded-sm"
-                            />
+                            <motion.div
+                              className="relative"
+                              whileHover={{ rotate: 360 }}
+                              transition={{ duration: 0.6 }}
+                            >
+                              <Image
+                                src={tech.icon}
+                                alt={`${tech.name} icon`}
+                                width={18}
+                                height={18}
+                                className="rounded-sm"
+                              />
+                            </motion.div>
                           )}
-                          <span>{tech.name}</span>
+                          <span className="group-hover/tech:text-foreground transition-colors duration-200">
+                            {tech.name}
+                          </span>
                         </motion.div>
                       ))}
-                      {project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-muted text-muted-foreground rounded-md text-xs">
-                          +{project.technologies.length - 3}
-                        </span>
+                      {project.technologies.length > 4 && (
+                        <motion.span
+                          className="px-4 py-2 bg-muted/60 text-muted-foreground rounded-xl text-sm font-medium border border-muted backdrop-blur-sm"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + 0.9 }}
+                        >
+                          +{project.technologies.length - 4} more
+                        </motion.span>
                       )}
                     </div>
 
-                    {/* Project Status */}
-                    <div className="flex items-center justify-between pt-2">
-                      <motion.span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          project.status === 'completed'
-                            ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                            : project.status === 'in-progress'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
-                            : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
-                        }`}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 + 0.2 }}
-                      >
-                        {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
-                      </motion.span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(project.endDate || project.startDate).getFullYear()}
-                      </span>
-                    </div>
 
-                    {/* Action buttons */}
+
+                    {/* Enhanced Action buttons */}
                     <motion.div
-                      className="flex gap-2 pt-2"
-                      initial={{ opacity: 0, y: 10 }}
+                      className="flex gap-4 pt-6"
+                      initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 + 0.3 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 1.0 }}
                     >
                       <motion.div className="flex-1">
                         <Link
                           href={`/${locale}/projects/${project.slug}`}
-                          className="block w-full px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg text-sm font-medium hover:bg-primary/20 transition-colors duration-200 text-center"
+                          className="group/btn block w-full"
                         >
                           <motion.div
-                            whileHover={{ scale: 1.02 }}
+                            className="relative px-6 py-3 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-xl font-semibold text-center overflow-hidden"
+                            whileHover={{
+                              scale: 1.02,
+                              boxShadow: "0 8px 25px rgba(var(--primary), 0.3)"
+                            }}
                             whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            View
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100"
+                              initial={false}
+                              animate={{ x: "-100%" }}
+                              whileHover={{ x: "100%" }}
+                              transition={{ duration: 0.6 }}
+                            />
+                            <span className="relative z-10">View Project</span>
                           </motion.div>
                         </Link>
                       </motion.div>
@@ -561,16 +749,22 @@ export function AnimatedProjectsGrid() {
                           href={project.links.find(link => link.type === 'github')?.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1.5 border border-border rounded-lg text-sm font-medium hover:bg-secondary transition-colors duration-200 text-center"
-                          whileHover={{ scale: 1.02 }}
+                          className="group/btn-secondary"
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)"
+                          }}
                           whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          Code
+                          <div className="px-6 py-3 border-2 border-border/50 rounded-xl font-semibold text-center backdrop-blur-sm hover:border-border hover:bg-secondary/30 transition-all duration-300">
+                            <span>Code</span>
+                          </div>
                         </motion.a>
                       )}
                     </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

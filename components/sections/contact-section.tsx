@@ -220,10 +220,10 @@ export function ContactSection() {
                   <div>
                     <p className="font-medium">Email</p>
                     <a 
-                      href="mailto:your.email@example.com" 
+                      href="mailto:alslamat407@example.com" 
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      your.email@example.com
+                      alslamat407@example.com
                     </a>
                   </div>
                 </div>
@@ -233,10 +233,10 @@ export function ContactSection() {
                   <div>
                     <p className="font-medium">Phone</p>
                     <a 
-                      href="tel:+1234567890" 
+                      href="tel:+96551370713" 
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      +1 (234) 567-890
+                      +965 51370713
                     </a>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export function ContactSection() {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <p className="text-muted-foreground">Kuwait</p>
                   </div>
                 </div>
               </CardContent>

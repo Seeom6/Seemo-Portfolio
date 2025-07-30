@@ -87,13 +87,24 @@ function ProjectsSkeleton() {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/10">
-      <div className="container mx-auto px-4 py-20 lg:py-32">
-        <AnimatedProjectsHeader />
-        <Suspense fallback={<ProjectsSkeleton />}>
-          <AnimatedProjectsGrid />
-        </Suspense>
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-secondary/5 relative overflow-hidden">
+      {/* Enhanced background elements */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 py-20 lg:py-32">
+          <AnimatedProjectsHeader />
+          <Suspense fallback={<ProjectsSkeleton />}>
+            <div className="mt-24">
+              <AnimatedProjectsGrid />
+            </div>
+          </Suspense>
+        </div>
       </div>
+
+
     </div>
   );
 }

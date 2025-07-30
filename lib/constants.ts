@@ -7,8 +7,8 @@ export const SITE_CONFIG = {
   url: 'https://your-domain.com',
   ogImage: '/og-image.jpg',
   author: {
-    name: 'Your Name',
-    email: 'your.email@example.com',
+    name: 'Mohammed',
+    email: 'alslamat407@example.com',
     twitter: '@yourusername',
     github: 'yourusername',
     linkedin: 'yourusername',
@@ -40,7 +40,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     name: 'Email',
-    url: 'mailto:your.email@example.com',
+    url: 'mailto:alslamat407@example.com',
     icon: 'mail',
   },
 ]
