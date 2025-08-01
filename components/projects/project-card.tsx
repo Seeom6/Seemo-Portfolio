@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ExternalLink, Calendar, Tag, ArrowUpRight, Star, Code } from 'lucide-react';
-import { Project } from '@/types/project';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Project } from '../../types/project';
+import { Badge } from '../../components/ui/badge';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '../../components/ui/card';
 
 interface ProjectCardProps {
   project: Project;

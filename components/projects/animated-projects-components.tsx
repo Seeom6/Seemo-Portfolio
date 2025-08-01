@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from "framer-motion";
-import { getAllProjects, getFeaturedProjects } from '@/data/projects';
+import { getAllProjects, getFeaturedProjects } from '../../data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -115,7 +115,7 @@ export function AnimatedProjectsHeader() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="text-3xl font-bold text-primary">10+</div>
+            <div className="text-3xl font-bold text-primary">12+</div>
             <div className="text-sm text-muted-foreground">Projects</div>
           </motion.div>
           <motion.div
@@ -123,7 +123,7 @@ export function AnimatedProjectsHeader() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="text-3xl font-bold text-primary">5+</div>
+            <div className="text-3xl font-bold text-primary">8+</div>
             <div className="text-sm text-muted-foreground">Technologies</div>
           </motion.div>
           <motion.div
@@ -131,7 +131,7 @@ export function AnimatedProjectsHeader() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="text-3xl font-bold text-primary">2+</div>
+            <div className="text-3xl font-bold text-primary">4+</div>
             <div className="text-sm text-muted-foreground">Years Experience</div>
           </motion.div>
         </motion.div>

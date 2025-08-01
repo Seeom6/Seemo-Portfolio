@@ -3,9 +3,9 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ProjectTechnology } from '@/types/project';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ProjectTechnology } from '../../types/project';
+import { Badge } from '../../components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 
 interface ProjectTechStackProps {
   technologies: ProjectTechnology[];

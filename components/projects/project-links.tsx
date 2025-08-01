@@ -10,9 +10,9 @@ import {
   Palette,
   Link as LinkIcon
 } from 'lucide-react';
-import { ProjectLink } from '@/types/project';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ProjectLink } from '../../types/project';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 
 interface ProjectLinksProps {
   links: ProjectLink[];

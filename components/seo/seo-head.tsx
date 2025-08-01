@@ -1,6 +1,6 @@
 import { NextSeo, NextSeoProps } from 'next-seo'
 import { useLocale } from 'next-intl'
-import { SITE_CONFIG } from '@/lib/constants'
+import { SITE_CONFIG } from '../../lib/constants'
 
 interface SEOHeadProps extends Partial<NextSeoProps> {
   title?: string

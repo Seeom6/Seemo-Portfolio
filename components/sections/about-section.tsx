@@ -5,11 +5,11 @@ import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { Calendar, ExternalLink, Award, GraduationCap, Briefcase } from "lucide-react"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { SKILLS, EXPERIENCE, EDUCATION, CERTIFICATIONS } from "@/lib/constants"
-import { Skill, SkillCategory } from "@/lib/types"
-import { cn } from "@/lib/utils"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
+import { Button } from "../../components/ui/button"
+import { SKILLS, EXPERIENCE, EDUCATION, CERTIFICATIONS } from "../../lib/constants"
+import { Skill, SkillCategory } from "../../lib/types"
+import { cn } from "../../lib/utils"
 
 export function AboutSection() {
   const t = useTranslations('about')

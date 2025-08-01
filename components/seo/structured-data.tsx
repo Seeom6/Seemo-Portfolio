@@ -1,5 +1,5 @@
-import { SITE_CONFIG } from '@/lib/constants'
-import { Project } from '@/lib/types'
+import { SITE_CONFIG } from '../../lib/constants'
+import { Project } from '../../lib/types'
 
 interface PersonStructuredDataProps {
   locale: string

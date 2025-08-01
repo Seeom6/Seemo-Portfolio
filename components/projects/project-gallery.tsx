@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
-import { Project } from '@/types/project';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Project } from '../../types/project';
+import { Button } from '../../components/ui/button';
+import { Dialog, DialogContent } from '../../components/ui/dialog';
 
 interface ProjectGalleryProps {
   project: Project;

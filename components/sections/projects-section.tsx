@@ -5,17 +5,17 @@ import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { Grid, List, Filter, ExternalLink, Github } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "../../components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { PROJECTS } from "@/lib/constants"
-import { Project, ProjectCategory, ViewMode } from "@/lib/types"
-import { cn } from "@/lib/utils"
+} from "../../components/ui/dropdown-menu"
+import { PROJECTS } from "../../lib/constants"
+import { Project, ProjectCategory, ViewMode } from "../../lib/types"
+import { cn } from "../../lib/utils"
 
 export function ProjectsSection() {
   const t = useTranslations('projects')

@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SOCIAL_LINKS } from "@/lib/constants"
+import Image from "next/image"
 
 const iconMap = {
   github: Github,
@@ -39,10 +40,8 @@ export function HeroSection() {
             className="flex justify-center"
           >
             <div className="relative group">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-4xl md:text-5xl font-bold text-primary-foreground shadow-xl ring-4 ring-primary/30 group-hover:scale-105 transition-transform">
-                H.S.D
-              </div>
-              <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping opacity-10"></div>
+             <Image  src ="/apple-touch-icon.png" alt="Profile Picture" width={200} height={200} className="rounded-full" />
+ 
             </div>
           </motion.div>
 

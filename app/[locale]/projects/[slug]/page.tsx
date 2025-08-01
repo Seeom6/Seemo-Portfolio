@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getProjectBySlug, getAllProjects } from '@/data/projects';
-import { ProjectDetailClient } from '@/components/projects/project-detail-client';
+import { getProjectBySlug, getAllProjects } from '../../../../data/projects';
+import { ProjectDetailClient } from '../../../../components/projects/project-detail-client';
 
 interface ProjectPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -15,10 +15,7 @@ export async function generateStaticParams() {
   const params = [];
   for (const project of projects) {
     for (const locale of locales) {
-      params.push({
-        locale,
-        slug: project.slug,
-      });
+      params.push({ locale, slug: project.slug });
     }
   }
   

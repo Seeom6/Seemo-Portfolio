@@ -1,4 +1,4 @@
-import { Project } from '@/types/project';
+import { Project } from '../types/project';
 import fs from 'fs';
 import path from 'path';
 
@@ -78,7 +78,7 @@ export async function getProjects(source: 'static' | 'json' | 'files' | 'cms' = 
     case 'static':
     default:
       // Import static projects
-      const { getAllProjects } = await import('@/data/projects');
+      const { getAllProjects } = await import('../data/projects');
       return getAllProjects();
   }
 }

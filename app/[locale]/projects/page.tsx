@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
-import { AnimatedProjectsHeader, AnimatedProjectsGrid } from '@/components/projects/animated-projects-components';
+import { AnimatedProjectsHeader, AnimatedProjectsGrid } from '../../../components/projects/animated-projects-components';
 // import { ProjectCard } from '@/components/projects/project-card';
 // import { PageTransition } from '@/components/ui/page-transition';
 
